@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service Greeter {
+    rpc SendData (Request) returns (Reply) {
+    }
+}
+
+message Request {
+    bytes name = 1;
+}
+
+message Reply {
+    bytes message = 1;
+}
