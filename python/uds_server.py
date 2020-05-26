@@ -14,9 +14,10 @@ def server_run():
 
     print('Server ready.')
 
+    size = 1 << 20
     conn, _ = sock.accept()
     while True:
-        data = conn.recv(32)
+        conn.recv(size)
         conn.send("Hello there!".encode('utf-8'))
 
 

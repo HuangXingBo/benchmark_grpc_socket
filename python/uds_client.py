@@ -4,7 +4,7 @@ def client_run():
 
     server_addr = '/tmp/uds_server.sock'
 
-    duration = 1
+    duration = 10
     end = time.time() + duration
     msgs = 0
 
@@ -12,9 +12,11 @@ def client_run():
 
     sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
     sock.connect(server_addr)
+    size = 1 << 20
+    data = b"b" * size
     while time.time() < end:
-        sock.send("Hello there!".encode('utf-8'))
-        data = sock.recv(32)
+        sock.send(data)
+        sock.recv(32)
         msgs += 1
     sock.close()
 
